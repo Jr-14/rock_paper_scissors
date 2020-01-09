@@ -2,16 +2,31 @@
 <hmtl>
     <head>
         <script>
-            function computerPlay() {
+            let computerPlay = function () {
                 //Selects in random Rock, Paper, or Scissors, from the computerSelection
                 let rockPaperScissors = ['Rock','Paper','Scissors'];
                 let computerSelection = rockPaperScissors[Math.floor(Math.random()*rockPaperScissors.length)];
                 return computerSelection;
             }
 
-            function playRound(playerSelection, computerSelection) {
-                let computerChoice = computerPlay();
-                let playerChoice = window.prompt();
+            function playRound(playerSelection = window.prompt(), computerSelection = computerPlay()) {
+                //Plays a single round of Rock, Paper, Scissors
+                let computerChoice = computerSelection.toUpperCase();
+                let playerChoice = playerSelection.toUpperCase();
+
+                //Debugging Purposes - check the player and computer choices or rock paper scissors
+                console.log(computerChoice);
+                console.log(playerChoice);
+
+                //Checks the winner and returns a String saying who wins
+                if (playerChoice === computerChoice) {
+                    return `Draw, both players have chosen ${computerChoice}`
+                } else if ((playerChoice == "ROCK" && computerChoice == "SCISSORS") || (playerChoice == "PAPER" && computerChoice == "ROCK") || (playerChoice == "SCISSORS" && computerChoice == "PAPER")) {
+                    return `You win! ${playerChoice} beats ${computerChoice}`;
+                } else {
+                    return `You Lose! ${computerChoice} beats ${playerChoice}`;
+                }
+
             }
 
             function game() {
