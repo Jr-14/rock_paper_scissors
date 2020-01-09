@@ -3,7 +3,7 @@
     <head>
         <script>
             function computerPlay () {
-                //Selects in random Rock, Paper, or Scissors, from the computerSelection
+                //Selects in random Rock, Paper, or Scissors for the computer
                 let rockPaperScissors = ['Rock','Paper','Scissors'];
                 let computerSelection = rockPaperScissors[Math.floor(Math.random()*rockPaperScissors.length)];
                 return computerSelection;
@@ -33,6 +33,8 @@
                 let counterComputerWins = 0;
                 let counterPlayerWins = 0;
 
+                //Game loop to play 5 rounds
+                //Increment player wins for each round they've won
                 for (let i = 0; i < 5; i++) {
                     let roundWinner = playRound();
                     if (roundWinner.startsWith("You win!")) {
