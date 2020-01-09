@@ -3,13 +3,15 @@
     <head>
         <script>
             function computerPlay() {
-                let computerSelection = ['Rock','Paper','Scissors'];
-                let rand = computerSelection[Math.floor(Math.random()*computerSelection.length)];
-                return rand;
+                //Selects in random Rock, Paper, or Scissors, from the computerSelection
+                let rockPaperScissors = ['Rock','Paper','Scissors'];
+                let computerSelection = rockPaperScissors[Math.floor(Math.random()*rockPaperScissors.length)];
+                return computerSelection;
             }
 
             function playRound(playerSelection, computerSelection) {
-
+                let computerChoice = computerPlay();
+                let playerChoice = window.prompt();
             }
 
             function game() {
