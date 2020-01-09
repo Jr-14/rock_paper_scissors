@@ -2,7 +2,7 @@
 <hmtl>
     <head>
         <script>
-            let computerPlay = function () {
+            function computerPlay () {
                 //Selects in random Rock, Paper, or Scissors, from the computerSelection
                 let rockPaperScissors = ['Rock','Paper','Scissors'];
                 let computerSelection = rockPaperScissors[Math.floor(Math.random()*rockPaperScissors.length)];
@@ -11,29 +11,53 @@
 
             function playRound(playerSelection = window.prompt(), computerSelection = computerPlay()) {
                 //Plays a single round of Rock, Paper, Scissors
-                let computerChoice = computerSelection.toUpperCase();
-                let playerChoice = playerSelection.toUpperCase();
+                let computerChoice = computerSelection.toLowerCase();
+                let playerChoice = playerSelection.toLowerCase();
 
                 //Debugging Purposes - check the player and computer choices or rock paper scissors
-                console.log(computerChoice);
-                console.log(playerChoice);
+                console.log(`Computer has chosen ${computerChoice}`);
+                console.log(`Player has chosen ${playerChoice}`);
 
-                //Checks the winner and returns a String saying who wins
+                //Checks the winner of the round 
                 if (playerChoice === computerChoice) {
                     return `Draw, both players have chosen ${computerChoice}`
-                } else if ((playerChoice == "ROCK" && computerChoice == "SCISSORS") || (playerChoice == "PAPER" && computerChoice == "ROCK") || (playerChoice == "SCISSORS" && computerChoice == "PAPER")) {
-                    return `You win! ${playerChoice} beats ${computerChoice}`;
+                } else if ((playerChoice == "rock" && computerChoice == "scissors") || (playerChoice == "paper" && computerChoice == "rock") || (playerChoice == "scissors" && computerChoice == "paper")) {
+                    return `You win! ${playerChoice} beat ${computerChoice}`;
                 } else {
-                    return `You Lose! ${computerChoice} beats ${playerChoice}`;
+                    return `You Lose! ${computerChoice} beat ${playerChoice}`;
                 }
-
             }
 
             function game() {
+                //Plays 5 rounds of rock paper scissors, and then determines the winner
+                let counterComputerWins = 0;
+                let counterPlayerWins = 0;
 
+                for (let i = 0; i < 5; i++) {
+                    let roundWinner = playRound();
+                    if (roundWinner.startsWith("You win!")) {
+                        counterPlayerWins += 1;
+                        console.log("You Win");
+                    } else if (roundWinner.startsWith("You Lose!")) {
+                        counterComputerWins += 1;
+                        console.log("You Lose");
+                    } else {
+                        console.log("Draw");
+                    }
+                    //Debugging purposes
+                    console.log(`Computer wins is ${counterComputerWins}`);
+                    console.log(`Player wins is ${counterPlayerWins}`);
+                }
+
+                //Checks who won the 5 games of rock paper scissors
+                if (counterPlayerWins > counterComputerWins) {
+                    return "You are the game winner!";
+                } else if (counterPlayerWins === counterComputerWins) {
+                    return "Draw!";
+                } else {
+                    return "You have lost to the computer!";
+                }
             }
-
-            
         </script>
     </head>
     <body>
